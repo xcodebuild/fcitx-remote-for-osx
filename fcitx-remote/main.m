@@ -142,10 +142,8 @@ int main(int argc, const char *argv[]) {
             NSString *method = [NSString stringWithUTF8String:argv[1]];
             if([method isEqualToString:@"-o"]){
                 active();
-
             }else if([method isEqualToString:@"-c"]){
                 inactive();
-
             }else if([method isEqualToString:@"-t"]){
                 switch_between_active_inactive();
 
