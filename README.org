@@ -41,5 +41,5 @@ My emacs hangs when I press =C-xC-f= in my spacemacs with this project and =fcit
   (fcitx-aggressive-setup)
 #+end_src
 
-* TODO
+* TODOS
 - [ ] fcitx.vim support
