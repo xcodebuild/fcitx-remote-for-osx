@@ -1,0 +1,47 @@
+xcodebuild GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS CHINNESE_KEYBOARD_LAYOUT=@\"com.baidu.inputmethod.BaiduIM.pinyin\"' install
+
+* fcitx-remote for Mac OS X
+
+** fcitx-remote
+fcitx-remote is a tool for control fcitx state via console.Users in Linux use it for interact with their vim or emacs to avoid being interrupted by input method.
+
+** Plugins
++ Vim: [[http://www.vim.org/scripts/script.php?script_id=3764][fcitx.vim - keep and restore fcitx state when leaving/re-entering insert mode : vim online]] （not supported for now,this is next to do）
+
++ Emacs: [[https://github.com/cute-jumper/fcitx.el][cute-jumper/fcitx.el]]
+
+** How this works
+fcitx-remote for Mac OS X dosen't reply on fcitx at all.It just a samll program respond to fcitx.el etc just like it's really fcitx-remote in Linux.
+
+You can choose your Chinese input method and English layout(or others) in compile.
+
+* Install
+
+#+BEGIN_SRC shell
+  git clone https://github.com/CodeFalling/fcitx-remote-for-osx
+  cd fcitx-remote-for-osx
+  xcodebuild GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS CHINNESE_KEYBOARD_LAYOUT=@\"com.baidu.inputmethod.BaiduIM.pinyin\"' install
+#+END_SRC
+
+=com.baidu.inputmethod.BaiduIM.pinyin= is imname of Baidu Pinyin inputmethod.
+
+You can use =fcitx-remote -n= to get imname of current inputmethod.
+
+| Inputmethod   | imname                              |
+| Baidu Pinyin  | com.baidu.inputmethod.BaiduIM.pinyi |
+| Sougou Pinyin | com.sogou.inputmethod.sogou.pinyin  |
+
+Feel free to perfecting this table,issue or pull&requests is fine.
+
+* Bugs
+
+My emacs hangs when I press =C-xC-f= in my spacemacs with this project and =fcitx.el=.Actually I don't know why,but =(fcitx-prefix-keys-setup)= and =(fcitx-prefix-keys-turn-on)= cause this.Good news is we just now need them in OS X beacuse most inputmethod in OS X dosen't block second key like fcitx.So just disable them before setup.
+
+#+begin_src emacs-lisp
+  (defun fcitx-prefix-keys-setup () nil)
+  (defun fcitx-prefix-turn-on () nil)
+  (fcitx-aggressive-setup)
+#+end_src
+
+* TODO
+- [ ] fcitx.vim support
