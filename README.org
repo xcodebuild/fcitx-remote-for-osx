@@ -29,6 +29,7 @@ You can use =fcitx-remote -n= to get imname of current inputmethod.
 
 | Inputmethod   | imname                               |
 | Baidu Pinyin  | com.baidu.inputmethod.BaiduIM.pinyin |
+| Baidu Wubi    | com.baidu.inputmethod.BaiduIM.wubi   |
 | Sougou Pinyin | com.sogou.inputmethod.sogou.pinyin   |
 | OS X Pinyin   | com.apple.inputmethod.SCIM.ITABC     |
 
