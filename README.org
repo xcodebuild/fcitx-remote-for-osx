@@ -1,10 +1,12 @@
-* fcitx-remote for OS X
+* fcitx-remote OS X
 
 ** fcitx-remote
 fcitx-remote is a tool for control fcitx state via console.Users in Linux use it for interact with their vim or emacs to avoid being interrupted by input method.
 
 ** Plugins
-+ Vim: [[http://www.vim.org/scripts/script.php?script_id=3764][fcitx.vim - keep and restore fcitx state when leaving/re-entering insert mode : vim online]] （not supported for now,this is next to do）
++ +Vim: [[http://www.vim.org/scripts/script.php?script_id=3764][fcitx.vim - keep and restore fcitx state when leaving/re-entering insert mode : vim online]] (not supported for now,this is next to do)+
+
++ Vim: [[https://github.com/CodeFalling/fcitx-vim-osx][CodeFalling/fcitx-vim-osx]] ,this is a modified version =fcitx.vim= works well with =fcitx-remote-osx=.Also works with =fcitx= in Linux.
 
 + Emacs: [[https://github.com/cute-jumper/fcitx.el][cute-jumper/fcitx.el]]
 
@@ -38,8 +40,8 @@ My emacs hangs when I press =C-xC-f= in my spacemacs with this project and =fcit
 #+begin_src emacs-lisp
   (defun fcitx-prefix-keys-setup () nil)
   (defun fcitx-prefix-turn-on () nil)
-  (fcitx-aggressive-setup)
+  (add-hook 'after-init-hook 'fcitx-aggressive-setup)
 #+end_src
 
 * TODOS
-- [ ] fcitx.vim support
+- [X] fcitx.vim support
