@@ -9,7 +9,7 @@ fcitx-remote is a tool for control fcitx state via console.Users in Linux use it
 + Emacs: [[https://github.com/cute-jumper/fcitx.el][cute-jumper/fcitx.el]]
 
 ** How this works
-fcitx-remote for OS X dosen't reply on fcitx at all.It just a samll program respond to fcitx.el etc just like it's really fcitx-remote in Linux.
+fcitx-remote for OS X dosen't reply on fcitx at all.It just a small program respond to fcitx.el etc just like it's really fcitx-remote in Linux.
 
 You can choose your Chinese input method and English layout(or others) in compile.
 
