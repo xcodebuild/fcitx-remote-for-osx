@@ -1,6 +1,4 @@
-xcodebuild GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS CHINNESE_KEYBOARD_LAYOUT=@\"com.baidu.inputmethod.BaiduIM.pinyin\"' install
-
-* fcitx-remote for Mac OS X
+* fcitx-remote for OS X
 
 ** fcitx-remote
 fcitx-remote is a tool for control fcitx state via console.Users in Linux use it for interact with their vim or emacs to avoid being interrupted by input method.
@@ -11,7 +9,7 @@ fcitx-remote is a tool for control fcitx state via console.Users in Linux use it
 + Emacs: [[https://github.com/cute-jumper/fcitx.el][cute-jumper/fcitx.el]]
 
 ** How this works
-fcitx-remote for Mac OS X dosen't reply on fcitx at all.It just a samll program respond to fcitx.el etc just like it's really fcitx-remote in Linux.
+fcitx-remote for OS X dosen't reply on fcitx at all.It just a samll program respond to fcitx.el etc just like it's really fcitx-remote in Linux.
 
 You can choose your Chinese input method and English layout(or others) in compile.
 
