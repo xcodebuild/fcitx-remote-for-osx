@@ -99,7 +99,7 @@ int main(int argc, const char *argv[]) {
             }else if([method isEqualToString:@"-h"]){
                 print_help();
             }else if([method isEqualToString:@"-n"]){
-                printf("%s", get_current_imname().cString);
+                printf("%s\n", get_current_imname().cString);
             }
         } else {
             print_status(get_status());
