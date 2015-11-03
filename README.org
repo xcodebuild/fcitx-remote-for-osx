@@ -42,7 +42,9 @@ Please let me know if something not work.
 * Trouble shooting
 
 +My emacs hangs when I press =C-xC-f= in my spacemacs with this project and =fcitx.el=.Actually I don't know why,but =(fcitx-prefix-keys-setup)= and =(fcitx-prefix-keys-turn-on)= cause this. Good news is we just now need them in OS X beacuse most inputmethod in OS X dosen't block second key like fcitx. So just *don't* use them.+
-** My Emacs got hanged when press C-x C-f
+
++ My Emacs got hanged when press C-x C-f
+
 Just add =(setq shell-file-name "bash")= to your =.emacs=.
 
 * TODOS
