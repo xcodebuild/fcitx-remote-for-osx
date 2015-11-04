@@ -43,3 +43,6 @@ xcuserdata
 *.xccheckout
 *.moved-aside
 *.xcuserstate
+
+
+fcitx-remote-*
