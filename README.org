@@ -27,11 +27,13 @@ You can choose your Chinese input method and English layout(or others) in compil
 
 You can use =fcitx-remote -n= to get imname of current inputmethod.
 
-| Inputmethod   | imname                               |
-| Baidu Pinyin  | com.baidu.inputmethod.BaiduIM.pinyin |
-| Baidu Wubi    | com.baidu.inputmethod.BaiduIM.wubi   |
-| Sougou Pinyin | com.sogou.inputmethod.sogou.pinyin   |
-| OS X Pinyin   | com.apple.inputmethod.SCIM.ITABC     |
+| Inputmethod   | imname                                           |
+| Baidu Pinyin  | com.baidu.inputmethod.BaiduIM.pinyin             |
+| Baidu Wubi    | com.baidu.inputmethod.BaiduIM.wubi               |
+| Sougou Pinyin | com.sogou.inputmethod.sogou.pinyin               |
+| QQ Wubi       | com.tencent.inputmethod.QQInput.QQWubi           |
+| Squirrel Rime | com.googlecode.rimeime.inputmethod.Squirrel.Rime |
+| OS X Pinyin   | com.apple.inputmethod.SCIM.ITABC                 |
 
 Feel free to perfecting this table,issue or pull&requests is fine.
 
