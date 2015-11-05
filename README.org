@@ -17,6 +17,32 @@ You can choose your Chinese input method and English layout(or others) in compil
 
 * Install
 
+** brew tap
+```shell
+brew tap codefalling/fcitx-remote-for-osx
+brew install codefalling/fcitx-remote-for-osx/fcitx-remote-for-osx --with-baidu-pinyin
+```
+
+`--with-baidu-pinyin` means install for Baidu-pinyin Input Method.
+
+You can use `brew info codefalling/fcitx-remote-for-osx/fcitx-remote-for-osx` to get more options info for input method support.
+
+```
+==> Options
+--with-baidu-pinyin
+	Build fcitx-remote for osx with baidu-pinyin support
+--with-baidu-wubi
+	Build fcitx-remote for osx with baidu-wubi support
+--with-osx-pinyin
+	Build fcitx-remote for osx with osx-pinyin support
+--with-qq-wubi
+	Build fcitx-remote for osx with qq-wubi support
+--with-sogou-pinyin
+	Build fcitx-remote for osx with sogou-pinyin support
+--with-squirrel-rime
+	Build fcitx-remote for osx with squirrel-rime support
+```
+** Manual Install
 #+BEGIN_SRC shell
   git clone https://github.com/CodeFalling/fcitx-remote-for-osx
   cd fcitx-remote-for-osx
@@ -37,7 +63,7 @@ You can use =fcitx-remote -n= to get imname of current inputmethod.
 
 Feel free to perfecting this table,issue or pull&requests is fine.
 
-* Prebuild binary
+** Prebuild binary
 If you don't want to install XCode.You can also download pre-build binary from +https://github.com/CodeFalling/fcitx-remote-for-osx/releases/tag/0.0.1 ，unzip and+ https://github.com/CodeFalling/fcitx-remote-for-osx/tree/binary ,then rename =fcitx-remote= and copy to =/usr/local/bin/=.
 
 Please let me know if something not work.
