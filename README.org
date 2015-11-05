@@ -21,7 +21,6 @@ You can choose your Chinese input method and English layout(or others) in compil
 #+BEGIN_SRC shell
 brew tap codefalling/fcitx-remote-for-osx
 brew install codefalling/fcitx-remote-for-osx/fcitx-remote-for-osx --with-baidu-pinyin
-```
 #+END_SRC
 
 =--with-baidu-pinyin= means install for Baidu-pinyin Input Method.
