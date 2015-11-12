@@ -1,3 +1,15 @@
+* Table Of Contents                                               :TOC_4_org:
+ - [[fcitx-remote OS X][fcitx-remote OS X]]
+   - [[fcitx-remote][fcitx-remote]]
+   - [[Plugins][Plugins]]
+   - [[How this works][How this works]]
+ - [[Install][Install]]
+   - [[brew tap][brew tap]]
+   - [[Manual Install][Manual Install]]
+   - [[Prebuild binary][Prebuild binary]]
+ - [[Trouble shooting][Trouble shooting]]
+ - [[TODOS][TODOS]]
+
 * fcitx-remote OS X
 
 ** fcitx-remote
@@ -65,7 +77,7 @@ You can use =fcitx-remote -n= to get imname of current inputmethod.
 Feel free to perfecting this table,issue or pull&requests is fine.
 
 ** Prebuild binary
-If you don't want to install XCode.You can also download pre-build binary from +https://github.com/CodeFalling/fcitx-remote-for-osx/releases/tag/0.0.1 ，unzip and+ https://github.com/CodeFalling/fcitx-remote-for-osx/tree/binary ,then rename =fcitx-remote= and copy to =/usr/local/bin/=.
+If you don't want to install XCode.You can also download pre-build binary from +https://github.com/CodeFalling/fcitx-remote-for-osx/releases/tag/0.0.1，unzip and+ https://github.com/CodeFalling/fcitx-remote-for-osx/tree/binary ,then rename =fcitx-remote= and copy to =/usr/local/bin/=.
 
 Please let me know if something not work.
 * Trouble shooting
