@@ -4,7 +4,7 @@
    - [[Plugins][Plugins]]
    - [[How this works][How this works]]
  - [[Install][Install]]
-   - [[brew tap][brew tap]]
+   - [[brew][brew]]
    - [[Manual Install][Manual Install]]
    - [[Prebuild binary][Prebuild binary]]
  - [[Trouble shooting][Trouble shooting]]
@@ -29,30 +29,18 @@ You can choose your Chinese input method and English layout(or others) in compil
 
 * Install
 
-** brew tap
+** brew
 #+BEGIN_SRC shell
-brew tap codefalling/fcitx-remote-for-osx
-brew install codefalling/fcitx-remote-for-osx/fcitx-remote-for-osx --with-baidu-pinyin
+brew install fcitx-remote-for-osx --with-input-method=baidu-pinyin
 #+END_SRC
 
-=--with-baidu-pinyin= means install for Baidu-pinyin Input Method.
+=--with-input-method=baidu-pinyin= means install for Baidu-pinyin Input Method.
 
-You can use =brew info codefalling/fcitx-remote-for-osx/fcitx-remote-for-osx= to get more options info for input method support.
+You can use =brew info fcitx-remote-for-osx= to get more options info for input method support.
 
 #+BEGIN_EXAMPLE
-==> Options
---with-baidu-pinyin
-	Build fcitx-remote for osx with baidu-pinyin support
---with-baidu-wubi
-	Build fcitx-remote for osx with baidu-wubi support
---with-osx-pinyin
-	Build fcitx-remote for osx with osx-pinyin support
---with-qq-wubi
-	Build fcitx-remote for osx with qq-wubi support
---with-sogou-pinyin
-	Build fcitx-remote for osx with sogou-pinyin support
---with-squirrel-rime
-	Build fcitx-remote for osx with squirrel-rime support
+--with-input-method=
+  Select input method: baidu-pinyin(default), baidu-wubi, sogou-pinyin, qq-wubi, squirrel-rime, osx-pinyin
 #+END_EXAMPLE
 
 ** Manual Install
