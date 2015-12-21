@@ -61,6 +61,7 @@ You can use =fcitx-remote -n= to get imname of current inputmethod.
 | QQ Wubi       | com.tencent.inputmethod.QQInput.QQWubi           |
 | Squirrel Rime | com.googlecode.rimeime.inputmethod.Squirrel.Rime |
 | OS X Pinyin   | com.apple.inputmethod.SCIM.ITABC                 |
+| Qingg Wubi    | com.aodaren.inputmethod.Qingg                    |
 
 Feel free to perfecting this table,issue or pull&requests is fine.
 
