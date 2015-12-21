@@ -16,6 +16,7 @@ InputMethod = {
     'qq-wubi': 'com.tencent.inputmethod.QQInput.QQWubi',
     'squirrel-rime': 'com.googlecode.rimeime.inputmethod.Squirrel.Rime',
     'osx-pinyin': 'com.apple.inputmethod.SCIM.ITABC',
+    'qingg': 'com.aodaren.inputmethod.Qingg',
 }
 
 def build(imname):
