@@ -123,6 +123,12 @@ key like fcitx. So just **don't** use them.~~
 
 Just add `(setq shell-file-name "bash")` to your `.emacs`.
 
+-   fcitx-remote -t not work
+
+Ensure you add `com.apple.keylayout.US` into input method source.
+
+![keylayout](https://cloud.githubusercontent.com/assets/5436704/13461653/d1404578-e0bd-11e5-8326-f7ca07558964.png)
+
 TODOS
 =====
 
