@@ -10,9 +10,9 @@ Table Of Contents
   - [Plugins](#plugins)
   - [How this works](#how-this-works)
 - [Install](#install)
-  - [brew](#brew)
+  - [Using Homebrew](#using-homebrew)
   - [Manual Install](#manual-install)
-  - [Prebuild binaries](#prebuild-binaries)
+  - [Prebuilt binaries](#prebuilt-binaries)
 - [Troubleshooting](#troubleshooting)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -58,7 +58,7 @@ in compilation.
 Install
 =======
 
-brew
+Using Homebrew
 ----
 
 ```bash
@@ -105,7 +105,7 @@ Qingg Wubi    | com.aodaren.inputmethod.Qingg
 
 Feel free to perfecting this table, issue or pull requests is fine.
 
-Prebuild binaries
+Prebuilt binaries
 ---------------
 
 If you don't want to install XCode.You can also download pre-build
