@@ -100,21 +100,21 @@ Sougou Pinyin | com.sogou.inputmethod.sogou.pinyin
 QQ Wubi       | com.tencent.inputmethod.QQInput.QQWubi
 Squirrel Rime | com.googlecode.rimeime.inputmethod.Squirrel.Rime
 OS X Pinyin   | com.apple.inputmethod.SCIM.ITABC
-OS X Wubi     | dcom.apple.inputmethod.SCIM.WBX
+OS X Wubi     | com.apple.inputmethod.SCIM.WBX
 Qingg Wubi    | com.aodaren.inputmethod.Qingg
 
-Feel free to perfecting this table, issue or pull requests is fine.
+Feel free to improve this table, issue or pull requests is fine.
 
 Prebuilt binaries
 ---------------
 
-If you don't want to install XCode.You can also download pre-build
-binary from
+If you don't want to install XCode, You can also download the pre-built
+binaries from
 ~~[https://github.com/CodeFalling/fcitx-remote-for-osx/releases/tag/0.0.2，unzip](https://github.com/CodeFalling/fcitx-remote-for-osx/releases/tag/0.0.2，unzip)
 and~~ <https://github.com/CodeFalling/fcitx-remote-for-osx/tree/binary>
-,then rename `fcitx-remote` and copy to `/usr/local/bin/`.
+, then rename to `fcitx-remote` and copy to `/usr/local/bin/`.
 
-Please let me know if something not work.
+Please let me know if anything does not work.
 
 Troubleshooting
 ================
@@ -131,6 +131,6 @@ Just add `(setq shell-file-name "bash")` to your `.emacs`.
 
 -   fcitx-remote -t don't work
 
-Ensure you add `com.apple.keylayout.US` into input method source.
+Ensure you have added `com.apple.keylayout.US` into input method source.
 
 ![keylayout](https://cloud.githubusercontent.com/assets/5436704/13461653/d1404578-e0bd-11e5-8326-f7ca07558964.png)
