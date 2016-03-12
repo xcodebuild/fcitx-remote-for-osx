@@ -12,9 +12,8 @@ Table Of Contents
 - [Install](#install)
   - [brew](#brew)
   - [Manual Install](#manual-install)
-  - [Prebuild binary](#prebuild-binary)
-- [Trouble shooting](#trouble-shooting)
-- [TODOS](#todos)
+  - [Prebuild binaries](#prebuild-binaries)
+- [Troubleshooting](#troubleshooting)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -106,7 +105,7 @@ Qingg Wubi    | com.aodaren.inputmethod.Qingg
 
 Feel free to perfecting this table, issue or pull requests is fine.
 
-Prebuild binary
+Prebuild binaries
 ---------------
 
 If you don't want to install XCode.You can also download pre-build
@@ -135,8 +134,3 @@ Just add `(setq shell-file-name "bash")` to your `.emacs`.
 Ensure you add `com.apple.keylayout.US` into input method source.
 
 ![keylayout](https://cloud.githubusercontent.com/assets/5436704/13461653/d1404578-e0bd-11e5-8326-f7ca07558964.png)
-
-TODOS
-=====
-
-- [X] fcitx.vim support
