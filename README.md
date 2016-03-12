@@ -24,8 +24,8 @@ fcitx-remote OS X
 fcitx-remote
 ------------
 
-fcitx-remote is a tool for control fcitx state via console.Users in
-Linux use it for interact with their vim or emacs to avoid being
+fcitx-remote is a tool for control fcitx state via console. Users in
+Linux use it for interaction with their vim or emacs to avoid being
 interrupted by input method.
 
 Plugins
@@ -36,12 +36,12 @@ Plugins
     online](http://www.vim.org/scripts/script.php?script_id=3764)
     The new version of this plugin uses socket to communicate fcitx which is
     not emulated by current version of fcitx-remote-osx, so you have to use
-    the backported version in the [so/fcitx.vim](https://github.com/lilydjwg/fcitx.vim/blob/master/so/fcitx.vim) of [lilydjwg/fcitx.vim](https://github.com/lilydjwg/fcitx.vim/blob/master/so/fcitx.vim).
+    the backported version under the directory [so/fcitx.vim](https://github.com/lilydjwg/fcitx.vim/blob/master/so/fcitx.vim) of [lilydjwg/fcitx.vim](https://github.com/lilydjwg/fcitx.vim).
 -   ~~Vim:
     [CodeFalling/fcitx-vim-osx](https://github.com/CodeFalling/fcitx-vim-osx)
     ,this is a modified version `fcitx.vim` which works well with
     `fcitx-remote-osx`. Also works with `fcitx` in Linux. Now merged into the
-    previous one under (so/fcitx.vim)[https://github.com/lilydjwg/fcitx.vim/blob/master/so/fcitx.vim].~~
+    previous one under [so/fcitx.vim](https://github.com/lilydjwg/fcitx.vim/blob/master/so/fcitx.vim).~~
 -   Emacs:
     [cute-jumper/fcitx.el](https://github.com/cute-jumper/fcitx.el)
     . Due to the limits of the Wubi Xing input source, you may not use Emacs with it.
