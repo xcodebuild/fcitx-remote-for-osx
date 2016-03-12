@@ -6,7 +6,7 @@ import sys
 CC = 'clang'
 BUILD_PATH = 'fcitx-remote-%s'
 SOURCE_FILE = './fcitx-remote/main.m'
-OPTS = '-framework foundation -framework carbon -DCHINNESE_KEYBOARD_LAYOUT=@\\"%s\\" -o %s'
+OPTS = '-framework foundation -framework carbon -DCHINESE_KEYBOARD_LAYOUT=@\\"%s\\" -o %s'
 
 
 InputMethod = {
@@ -16,6 +16,7 @@ InputMethod = {
     'qq-wubi': 'com.tencent.inputmethod.QQInput.QQWubi',
     'squirrel-rime': 'com.googlecode.rimeime.inputmethod.Squirrel.Rime',
     'osx-pinyin': 'com.apple.inputmethod.SCIM.ITABC',
+    'osx-wubi': 'com.apple.inputmethod.SCIM.WBX',
     'qingg': 'com.aodaren.inputmethod.Qingg',
 }
 

@@ -19,8 +19,8 @@
 #define US_KEYBOARD_LAYOUT @"com.apple.keylayout.US"
 #endif
 
-#ifndef CHINNESE_KEYBOARD_LAYOUT
-#define CHINNESE_KEYBOARD_LAYOUT @"com.sogou.inputmethod.sogou.pinyin"
+#ifndef CHINESE_KEYBOARD_LAYOUT
+#define CHINESE_KEYBOARD_LAYOUT @"com.sogou.inputmethod.sogou.pinyin"
 #endif
 
 
@@ -35,7 +35,7 @@ void switch_to(NSString* imId){
 }
 
 void active(){
-    switch_to(CHINNESE_KEYBOARD_LAYOUT);
+    switch_to(CHINESE_KEYBOARD_LAYOUT);
 }
 
 void inactive(){
@@ -74,7 +74,7 @@ void switch_between_active_inactive(){
 
 void print_help(){
     printf("Usage: fcitx-remote [OPTION]\n"
-            "\t-c\t\tinactivate input method\n"
+            "\t-c\t\tdeactivate input method\n"
             "\t-o\t\tactivate input method\n"
             "\t-t\t\tswitch Active/Inactive\n"
             "\t-s <imname>\tswitch to the input method uniquely identified by <imname>\n"
