@@ -33,11 +33,6 @@ static inline void pressKeyWithFlags(CGKeyCode virtualKey, CGEventFlags flags) {
     CGEventSetFlags(event, flags);
     CGEventPost(kCGSessionEventTap, event);
     CFRelease(event);
-    
-    event = CGEventCreateKeyboardEvent(NULL, virtualKey, false);
-    CGEventSetFlags(event, flags);
-    CGEventPost(kCGSessionEventTap, event);
-    CFRelease(event);
 }
 
 void switch_to(NSString* imId){
