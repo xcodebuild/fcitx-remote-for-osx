@@ -37,8 +37,8 @@ static inline void pressKeyWithFlags(CGKeyCode virtualKey, CGEventFlags flags) {
 
 void switch_to(NSString* imId){
     if ([imId isEqualToString:GENERAL_KEYBOARD_LAYOUT]) {
-        // use cmd-alt-space to change input method
-        pressKeyWithFlags(kVK_Space, kCGEventFlagMaskCommand | kCGEventFlagMaskAlternate);
+        // use ctrl-shift-z to change input method
+        pressKeyWithFlags(kVK_ANSI_Z, kCGEventFlagMaskControl | kCGEventFlagMaskShift);
         return;
     }
     NSDictionary *filter = [NSDictionary dictionaryWithObject:imId forKey:(NSString *) kTISPropertyInputSourceID];
