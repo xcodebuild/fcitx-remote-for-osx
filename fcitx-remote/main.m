@@ -33,11 +33,16 @@ static inline void pressKeyWithFlags(CGKeyCode virtualKey, CGEventFlags flags) {
     CGEventSetFlags(event, flags);
     CGEventPost(kCGSessionEventTap, event);
     CFRelease(event);
+    
+    event = CGEventCreateKeyboardEvent(NULL, virtualKey, false);
+    CGEventSetFlags(event, flags);
+    CGEventPost(kCGSessionEventTap, event);
+    CFRelease(event);
 }
 
 void switch_to(NSString* imId){
     if ([imId isEqualToString:GENERAL_KEYBOARD_LAYOUT]) {
-       // use cmd-alt-space to change input method
+        // use cmd-alt-space to change input method
         pressKeyWithFlags(kVK_Space, kCGEventFlagMaskCommand | kCGEventFlagMaskAlternate);
         return;
     }
