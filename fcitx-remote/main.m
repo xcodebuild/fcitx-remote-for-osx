@@ -23,7 +23,7 @@
 #endif
 
 #ifndef CHINESE_KEYBOARD_LAYOUT
-#define CHINESE_KEYBOARD_LAYOUT @"com.sogou.inputmethod.sogou.pinyin"
+#define CHINESE_KEYBOARD_LAYOUT @"GENERAL"
 #endif
 
 #define GENERAL_KEYBOARD_LAYOUT @"GENERAL"
