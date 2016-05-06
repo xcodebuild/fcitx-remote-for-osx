@@ -62,7 +62,7 @@ Using Homebrew
 ----
 
 ```bash
-brew install fcitx-remote-for-osx --with-input-method=baidu-pinyin
+brew install fcitx-remote-for-osx --with-input-method=pinyin
 ```
 
 `--with-input-method=baidu-pinyin` means install for Baidu-pinyin Input

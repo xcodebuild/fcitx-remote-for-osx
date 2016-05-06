@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <Carbon/Carbon.h>
+#import <AppKit/AppKit.h>
+
 
 #define INACTIVE 1
+
 #define ACTIVE 2
 
 #define INACTIVE_STR "1"
@@ -23,8 +26,21 @@
 #define CHINESE_KEYBOARD_LAYOUT @"com.sogou.inputmethod.sogou.pinyin"
 #endif
 
+#define GENERAL_KEYBOARD_LAYOUT @"GENERAL"
+
+static inline void pressKeyWithFlags(CGKeyCode virtualKey, CGEventFlags flags) {
+    CGEventRef event = CGEventCreateKeyboardEvent(NULL, virtualKey, true);
+    CGEventSetFlags(event, flags);
+    CGEventPost(kCGSessionEventTap, event);
+    CFRelease(event);
+}
 
 void switch_to(NSString* imId){
+    if ([imId isEqualToString:GENERAL_KEYBOARD_LAYOUT]) {
+       // use cmd-alt-space to change input method
+        pressKeyWithFlags(kVK_Space, kCGEventFlagMaskCommand | kCGEventFlagMaskAlternate);
+        return;
+    }
     NSDictionary *filter = [NSDictionary dictionaryWithObject:imId forKey:(NSString *) kTISPropertyInputSourceID];
     CFArrayRef keyboards = TISCreateInputSourceList((__bridge CFDictionaryRef) filter, false);
     if (keyboards) {
