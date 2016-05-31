@@ -28,17 +28,19 @@
 
 #define GENERAL_KEYBOARD_LAYOUT @"GENERAL"
 
-static inline void pressKeyWithFlags(CGKeyCode virtualKey, CGEventFlags flags) {
-    CGEventRef event = CGEventCreateKeyboardEvent(NULL, virtualKey, true);
-    CGEventSetFlags(event, flags);
-    CGEventPost(kCGSessionEventTap, event);
-    CFRelease(event);
+void runScript(NSString* scriptText)
+{
+    NSDictionary *error = nil;
+    NSAppleEventDescriptor *appleEventDescriptor;
+    NSAppleScript *appleScript; 
+    appleScript = [[NSAppleScript alloc] initWithSource:scriptText];
+    appleEventDescriptor = [appleScript executeAndReturnError:&error];
 }
 
 void switch_to(NSString* imId){
     if ([imId isEqualToString:GENERAL_KEYBOARD_LAYOUT]) {
         // use ctrl-shift-z to change input method
-        pressKeyWithFlags(kVK_ANSI_Z, kCGEventFlagMaskControl | kCGEventFlagMaskShift);
+        runScript(@"tell application \"System Events\" to keystroke \"z\" using {shift down, control down}");
         return;
     }
     NSDictionary *filter = [NSDictionary dictionaryWithObject:imId forKey:(NSString *) kTISPropertyInputSourceID];
