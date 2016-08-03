@@ -10,7 +10,6 @@
 #import <Carbon/Carbon.h>
 #import <AppKit/AppKit.h>
 
-
 #define INACTIVE 1
 
 #define ACTIVE 2
@@ -23,32 +22,86 @@
 #endif
 
 #ifndef CHINESE_KEYBOARD_LAYOUT
-#define CHINESE_KEYBOARD_LAYOUT @"GENERAL"
+#define CHINESE_KEYBOARD_LAYOUT @"com.sogou.inputmethod.sogou.pinyin"
 #endif
 
-#define GENERAL_KEYBOARD_LAYOUT @"GENERAL"
+// void runScript(NSString* scriptText)
+// {
+//     NSDictionary *error = nil;
+//     NSAppleEventDescriptor *appleEventDescriptor;
+//     NSAppleScript *appleScript; 
+//     appleScript = [[NSAppleScript alloc] initWithSource:scriptText];
+//     appleEventDescriptor = [appleScript executeAndReturnError:&error];
+// }
 
-void runScript(NSString* scriptText)
-{
-    NSDictionary *error = nil;
-    NSAppleEventDescriptor *appleEventDescriptor;
-    NSAppleScript *appleScript; 
-    appleScript = [[NSAppleScript alloc] initWithSource:scriptText];
-    appleEventDescriptor = [appleScript executeAndReturnError:&error];
+NSString* get_current_imname(){
+    TISInputSourceRef current = TISCopyCurrentKeyboardInputSource();
+    return (__bridge NSString *) (TISGetInputSourceProperty(current, kTISPropertyInputSourceID));
 }
 
 void switch_to(NSString* imId){
-    if ([imId isEqualToString:GENERAL_KEYBOARD_LAYOUT]) {
-        // use ctrl-shift-z to change input method
-        runScript(@"tell application \"System Events\" to keystroke \"z\" using {shift down, control down}");
-        return;
-    }
-    NSDictionary *filter = [NSDictionary dictionaryWithObject:imId forKey:(NSString *) kTISPropertyInputSourceID];
-    CFArrayRef keyboards = TISCreateInputSourceList((__bridge CFDictionaryRef) filter, false);
+    // if ([imId isEqualToString:GENERAL_KEYBOARD_LAYOUT]) {
+    //     // use ctrl-shift-z to change input method
+    //     //runScript(@"tell application \"System Events\" to keystroke \"z\" using {shift down, control down}");
+    //     CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateHIDSystemState);
+    //     CGEventRef down = CGEventCreateKeyboardEvent(source, kVK_ANSI_Z, true);
+    //     CGEventRef up = CGEventCreateKeyboardEvent(source, kVK_ANSI_Z, false);
+        
+    //     int flag = kCGEventFlagMaskShift | kCGEventFlagMaskControl;
+    //     CGEventSetFlags(down, flag);
+    //     CGEventSetFlags(up, flag);
+    //     CGEventPost(kCGHIDEventTap, down);
+    //     CGEventPost(kCGHIDEventTap, up);
+    //     return;
+    // }
+    
+    // Idea from https://github.com/noraesae/kawa/blob/master/kawa/InputSourceManager.swift#L55
+    CFArrayRef keyboards = TISCreateInputSourceList(nil, false);
     if (keyboards) {
-        TISInputSourceRef selected = (TISInputSourceRef) CFArrayGetValueAtIndex(keyboards, 0);
-        TISSelectInputSource(selected);
-        CFRelease(keyboards);
+        NSArray *array = CFBridgingRelease(keyboards);
+        NSArray *filteredArray = [array filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
+            TISInputSourceRef inputSource = (__bridge TISInputSourceRef)(object);
+            CFStringRef category = TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceCategory);
+            CFBooleanRef selectable = TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceIsSelectCapable);
+            return CFEqual(category, kTISCategoryKeyboardInputSource) && CFBooleanGetValue(selectable);
+        }]];
+        int index = 0,i = 0, us = 0;
+        for (id object in filteredArray) {
+            TISInputSourceRef inputSource = (__bridge TISInputSourceRef)(object);
+            NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
+            NSLog(@"%@", name);
+            if ([name isEqualTo: imId]) {
+                index = i;
+            }
+            if ([name isEqualTo: US_KEYBOARD_LAYOUT]) {
+                us = i;
+            }
+            i++;
+        }
+        
+        NSString *current = get_current_imname();
+        if (![current isEqualTo: US_KEYBOARD_LAYOUT]) {
+            TISInputSourceRef inputSource = (__bridge TISInputSourceRef)filteredArray[us];
+            NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
+            NSLog(@"%d %@", us, name);
+            TISSelectInputSource((__bridge TISInputSourceRef)filteredArray[index]);
+
+        }
+        
+        int diff = (us - index + i) % i;
+        for (int j = 0;j < diff;j++) {
+            CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateHIDSystemState);
+            CGEventRef down = CGEventCreateKeyboardEvent(source, kVK_Space, true);
+            CGEventRef up = CGEventCreateKeyboardEvent(source, kVK_Space, false);
+            
+            int flag = kCGEventFlagMaskAlternate | kCGEventFlagMaskControl;
+            CGEventSetFlags(down, flag);
+            CGEventSetFlags(up, flag);
+            CGEventPost(kCGHIDEventTap, down);
+            CGEventPost(kCGHIDEventTap, up);
+            
+            [NSThread sleepForTimeInterval:0.05f];
+        }
     }
 }
 
@@ -58,11 +111,6 @@ void active(){
 
 void inactive(){
     switch_to(US_KEYBOARD_LAYOUT);
-}
-
-NSString* get_current_imname(){
-    TISInputSourceRef current = TISCopyCurrentKeyboardInputSource();
-    return (__bridge NSString *) (TISGetInputSourceProperty(current, kTISPropertyInputSourceID));
 }
 
 int get_status(){
