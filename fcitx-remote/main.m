@@ -161,7 +161,11 @@ int main(int argc, const char *argv[]) {
             }else if([method isEqualToString:@"-t"]){
                 switch_between_active_inactive();
             }else if([method isEqualToString:@"-s"]){
-                switch_to([NSString stringWithUTF8String:argv[2]]);
+                if (argc > 2) {
+                    switch_to([NSString stringWithUTF8String:argv[2]]);
+                } else {
+                    print_help();
+                }
             }else if([method isEqualToString:@"-h"]){
                 print_help();
             }else if([method isEqualToString:@"-n"]){
