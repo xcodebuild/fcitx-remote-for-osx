@@ -37,7 +37,9 @@ in compilation.
 brew install fcitx-remote-for-osx
 ```
 
-Then set your shortcut for `Select next source in input menu` to `Ctrl-Shift-z`.
+## System Settings for GENERAL method only
+
+Set your shortcut for `Select next source in input menu` to `Ctrl-Shift-z`.
 
 ![preview](https://cloud.githubusercontent.com/assets/5436704/15090907/60f3cc0a-146a-11e6-9f32-8128d1e2a339.png)
 
