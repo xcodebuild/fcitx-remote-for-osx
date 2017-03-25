@@ -25,14 +25,16 @@
 #define CHINESE_KEYBOARD_LAYOUT @"com.sogou.inputmethod.sogou.pinyin"
 #endif
 
-// void runScript(NSString* scriptText)
-// {
-//     NSDictionary *error = nil;
-//     NSAppleEventDescriptor *appleEventDescriptor;
-//     NSAppleScript *appleScript; 
-//     appleScript = [[NSAppleScript alloc] initWithSource:scriptText];
-//     appleEventDescriptor = [appleScript executeAndReturnError:&error];
-// }
+#define GENERAL_KEYBOARD_LAYOUT @"GENERAL"
+
+void runScript(NSString* scriptText)
+{
+    NSDictionary *error = nil;
+    NSAppleEventDescriptor *appleEventDescriptor;
+    NSAppleScript *appleScript;
+    appleScript = [[NSAppleScript alloc] initWithSource:scriptText];
+    appleEventDescriptor = [appleScript executeAndReturnError:&error];
+}
 
 NSString* get_current_imname(){
     TISInputSourceRef current = TISCopyCurrentKeyboardInputSource();
@@ -40,21 +42,31 @@ NSString* get_current_imname(){
 }
 
 void switch_to(NSString* imId){
-    // if ([imId isEqualToString:GENERAL_KEYBOARD_LAYOUT]) {
-    //     // use ctrl-shift-z to change input method
-    //     //runScript(@"tell application \"System Events\" to keystroke \"z\" using {shift down, control down}");
-    //     CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateHIDSystemState);
-    //     CGEventRef down = CGEventCreateKeyboardEvent(source, kVK_ANSI_Z, true);
-    //     CGEventRef up = CGEventCreateKeyboardEvent(source, kVK_ANSI_Z, false);
+    if ([GENERAL_KEYBOARD_LAYOUT isEqualToString:CHINESE_KEYBOARD_LAYOUT]) {
+        if ([get_current_imname() isEqualToString:imId]) {
+            return;
+        }
+        // use ctrl-shift-z to change input method
+        // slow but ensure to work
+        runScript(@"tell application \"System Events\" to keystroke \"z\" using {shift down, control down}");
+        return;
         
-    //     int flag = kCGEventFlagMaskShift | kCGEventFlagMaskControl;
-    //     CGEventSetFlags(down, flag);
-    //     CGEventSetFlags(up, flag);
-    //     CGEventPost(kCGHIDEventTap, down);
-    //     CGEventPost(kCGHIDEventTap, up);
-    //     return;
-    // }
+        // faster but not reliable
+        /*
+        CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateHIDSystemState);
+        CGEventRef down = CGEventCreateKeyboardEvent(source, kVK_ANSI_Z, true);
+        CGEventRef up = CGEventCreateKeyboardEvent(source, kVK_ANSI_Z, false);
+        
+        int flag = kCGEventFlagMaskShift | kCGEventFlagMaskControl;
+        CGEventSetFlags(down, flag);
+        CGEventSetFlags(up, flag);
+        CGEventPost(kCGHIDEventTap, down);
+        CGEventPost(kCGHIDEventTap, up);
+        return;
+         */
+    }
     
+    // slow but ensure to work
     // Idea from https://github.com/noraesae/kawa/blob/master/kawa/InputSourceManager.swift#L55
     CFArrayRef keyboards = TISCreateInputSourceList(nil, false);
     if (keyboards) {
