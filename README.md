@@ -34,8 +34,12 @@ in compilation.
 ## Install
 
 ```bash
-brew install fcitx-remote-for-osx
+brew install fcitx-remote-for-osx --with-input-method=<method>
 ```
+
+## System Settings for methods other than general
+
+None.
 
 ## System Settings for GENERAL method only
 

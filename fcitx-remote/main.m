@@ -1,10 +1,20 @@
-//
-//  main.m
-//  fcitx-remote
-//
-//  Created by codefalling on 15/11/2.
-//  Copyright (c) 2015 codefalling. All rights reserved.
-//
+/*
+ *  This file is part of fcitx-remote-for-osx
+ *  Copyright (c) 2015-2017 fcitx-remote-for-osx's authors
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 
 #import <Foundation/Foundation.h>
 #import <Carbon/Carbon.h>
@@ -50,7 +60,7 @@ void switch_to(NSString* imId){
         // slow but ensure to work
         runScript(@"tell application \"System Events\" to keystroke \"z\" using {shift down, control down}");
         return;
-        
+
         // faster but not reliable
         /*
         CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateHIDSystemState);
@@ -66,8 +76,6 @@ void switch_to(NSString* imId){
          */
     }
     
-    // slow but ensure to work
-    // Idea from https://github.com/noraesae/kawa/blob/master/kawa/InputSourceManager.swift#L55
     CFArrayRef keyboards = TISCreateInputSourceList(nil, false);
     if (keyboards) {
         NSArray *array = CFBridgingRelease(keyboards);
@@ -77,43 +85,19 @@ void switch_to(NSString* imId){
             CFBooleanRef selectable = TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceIsSelectCapable);
             return CFEqual(category, kTISCategoryKeyboardInputSource) && CFBooleanGetValue(selectable);
         }]];
-        int index = 0,i = 0, us = 0;
+        int index = 0;
         for (id object in filteredArray) {
             TISInputSourceRef inputSource = (__bridge TISInputSourceRef)(object);
             NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
-            NSLog(@"%@", name);
             if ([name isEqualTo: imId]) {
-                index = i;
+                TISInputSourceRef inputSource = (__bridge TISInputSourceRef)filteredArray[index];
+                NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
+                NSLog(@"Changing to %@", name);
+                TISSelectInputSource((__bridge TISInputSourceRef)filteredArray[index]);
             }
-            if ([name isEqualTo: US_KEYBOARD_LAYOUT]) {
-                us = i;
-            }
-            i++;
+            index++;
         }
         
-        NSString *current = get_current_imname();
-        if (![current isEqualTo: US_KEYBOARD_LAYOUT]) {
-            TISInputSourceRef inputSource = (__bridge TISInputSourceRef)filteredArray[us];
-            NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
-            NSLog(@"%d %@", us, name);
-            TISSelectInputSource((__bridge TISInputSourceRef)filteredArray[index]);
-
-        }
-        
-        int diff = (us - index + i) % i;
-        for (int j = 0;j < diff;j++) {
-            CGEventSourceRef source = CGEventSourceCreate(kCGEventSourceStateHIDSystemState);
-            CGEventRef down = CGEventCreateKeyboardEvent(source, kVK_Space, true);
-            CGEventRef up = CGEventCreateKeyboardEvent(source, kVK_Space, false);
-            
-            int flag = kCGEventFlagMaskAlternate | kCGEventFlagMaskControl;
-            CGEventSetFlags(down, flag);
-            CGEventSetFlags(up, flag);
-            CGEventPost(kCGHIDEventTap, down);
-            CGEventPost(kCGHIDEventTap, up);
-            
-            [NSThread sleepForTimeInterval:0.05f];
-        }
     }
 }
 
