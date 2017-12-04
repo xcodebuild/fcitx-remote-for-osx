@@ -14,7 +14,7 @@ InputMethod = {
     'baidu-wubi': 'com.baidu.inputmethod.BaiduIM.wubi',
     'sogou-pinyin': 'com.sogou.inputmethod.sogou.pinyin',
     'qq-wubi': 'com.tencent.inputmethod.QQInput.QQWubi',
-    'squirrel-rime': 'com.googlecode.rimeime.inputmethod.Squirrel.Rime',
+    'squirrel-rime': 'im.rime.inputmethod.Squirrel.Rime',
     'osx-pinyin': 'com.apple.inputmethod.SCIM.ITABC',
     'osx-wubi': 'com.apple.inputmethod.SCIM.WBX',
     'qingg': 'com.aodaren.inputmethod.Qingg',
