@@ -35,6 +35,7 @@ InputMethod = {
     'osx-pinyin': 'com.apple.inputmethod.SCIM.ITABC',
     'osx-wubi': 'com.apple.inputmethod.SCIM.WBX',
     'qingg': 'com.aodaren.inputmethod.Qingg',
+    'log': 'com.logcg.inputmethod.LogInputMac.LogInputMacSP',
     'general': 'GENERAL'
 }
 
