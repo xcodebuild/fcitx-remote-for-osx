@@ -22,7 +22,7 @@ import sys
 CC = 'clang'
 BUILD_PATH = 'fcitx-remote-%s'
 SOURCE_FILE = './fcitx-remote/main.m'
-OPTS = '-framework foundation -framework carbon -DCHINESE_KEYBOARD_LAYOUT=@\\"%s\\" -o %s'
+OPTS = '-framework foundation -framework carbon -DGENERAL_KEYBOARD_LAYOUT=@\\"%s\\" -DCHINESE_KEYBOARD_LAYOUT=@\\"%s\\" -o %s'
 
 
 InputMethod = {
@@ -42,7 +42,7 @@ InputMethod = {
 
 def build(imname):
     use_path = BUILD_PATH % imname
-    use_opts = OPTS % (InputMethod[imname], use_path)
+    use_opts = OPTS % (InputMethod[imname], InputMethod[imname], use_path)
     use_cmd = '%s %s %s' % (CC, SOURCE_FILE, use_opts)
     print use_cmd
     if os.system(use_cmd) == 0:

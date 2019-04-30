@@ -35,7 +35,9 @@
 #define CHINESE_KEYBOARD_LAYOUT @"com.sogou.inputmethod.sogou.pinyin"
 #endif
 
+#ifndef GENERAL_KEYBOARD_LAYOUT
 #define GENERAL_KEYBOARD_LAYOUT @"GENERAL"
+#endif
 
 void runScript(NSString* scriptText)
 {
@@ -52,7 +54,16 @@ NSString* get_current_imname(){
 }
 
 void switch_to(NSString* imId){
-    if ([GENERAL_KEYBOARD_LAYOUT isEqualToString:CHINESE_KEYBOARD_LAYOUT]) {
+    NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @NO};
+    BOOL enabled = AXIsProcessTrustedWithOptions((CFDictionaryRef)options);
+    
+    if (!enabled) {
+        NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
+        AXIsProcessTrustedWithOptions((CFDictionaryRef)options);
+        NSLog(@"Please trust app in System Setting");
+    }
+
+    if ([GENERAL_KEYBOARD_LAYOUT isEqualToString:@"GENERAL"]) {
         if ([get_current_imname() isEqualToString:imId]) {
             return;
         }
@@ -75,30 +86,40 @@ void switch_to(NSString* imId){
         return;
          */
     }
-    
-    CFArrayRef keyboards = TISCreateInputSourceList(nil, false);
-    if (keyboards) {
-        NSArray *array = CFBridgingRelease(keyboards);
-        NSArray *filteredArray = [array filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
-            TISInputSourceRef inputSource = (__bridge TISInputSourceRef)(object);
-            CFStringRef category = TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceCategory);
-            CFBooleanRef selectable = TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceIsSelectCapable);
-            return CFEqual(category, kTISCategoryKeyboardInputSource) && CFBooleanGetValue(selectable);
-        }]];
-        int index = 0;
-        for (id object in filteredArray) {
-            TISInputSourceRef inputSource = (__bridge TISInputSourceRef)(object);
-            NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
-            if ([name isEqualTo: imId]) {
-                TISInputSourceRef inputSource = (__bridge TISInputSourceRef)filteredArray[index];
-                NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
-                NSLog(@"Changing to %@", name);
-                TISSelectInputSource((__bridge TISInputSourceRef)filteredArray[index]);
-            }
-            index++;
-        }
-        
+
+    // have special input method
+
+    int tryCount = 0;
+    while(tryCount < 8 && ![get_current_imname() isEqualToString:imId]) {
+        runScript(@"tell application \"System Events\" to keystroke \"z\" using {shift down, control down}");
+        tryCount ++;
+        NSLog(@"Changing to %@", get_current_imname());
+        [NSThread sleepForTimeInterval:0.2f];
     }
+    
+    // CFArrayRef keyboards = TISCreateInputSourceList(nil, false);
+    // if (keyboards) {
+    //     NSArray *array = CFBridgingRelease(keyboards);
+    //     NSArray *filteredArray = [array filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
+    //         TISInputSourceRef inputSource = (__bridge TISInputSourceRef)(object);
+    //         CFStringRef category = TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceCategory);
+    //         CFBooleanRef selectable = TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceIsSelectCapable);
+    //         return CFEqual(category, kTISCategoryKeyboardInputSource) && CFBooleanGetValue(selectable);
+    //     }]];
+    //     int index = 0;
+    //     for (id object in filteredArray) {
+    //         TISInputSourceRef inputSource = (__bridge TISInputSourceRef)(object);
+    //         NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
+    //         if ([name isEqualTo: imId]) {
+    //             TISInputSourceRef inputSource = (__bridge TISInputSourceRef)filteredArray[index];
+    //             NSString *name = (__bridge NSString*)TISGetInputSourceProperty(inputSource, kTISPropertyInputSourceID);
+    //             NSLog(@"Changing to %@", name);
+    //             TISSelectInputSource((__bridge TISInputSourceRef)filteredArray[index]);
+    //         }
+    //         index++;
+    //     }
+        
+    // }
 }
 
 void active(){
