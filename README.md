@@ -34,7 +34,14 @@ in compilation.
 ## Install
 
 ```bash
-brew install fcitx-remote-for-osx --with-input-method=<method>
+git clone https://github.com/dangxuandev/fcitx-remote-for-osx -b feature/special-input-method
+cd fcitx-remote-for-osx
+./build.py build sogou-pinyin
+cp ./fcitx-remote-bin /usr/local/bin/fcitx-remote
+
+
+## fcitx-remote -o
+## Should switch to your Chinese input method
 ```
 
 ## System Settings for methods other than general

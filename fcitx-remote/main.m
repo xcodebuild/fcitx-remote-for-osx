@@ -93,7 +93,6 @@ void switch_to(NSString* imId){
     while(tryCount < 8 && ![get_current_imname() isEqualToString:imId]) {
         runScript(@"tell application \"System Events\" to keystroke \"z\" using {shift down, control down}");
         tryCount ++;
-        NSLog(@"Changing to %@", get_current_imname());
         [NSThread sleepForTimeInterval:0.2f];
     }
     
