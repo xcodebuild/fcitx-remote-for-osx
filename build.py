@@ -33,6 +33,7 @@ InputMethod = {
     'squirrel-rime': 'com.googlecode.rimeime.inputmethod.Squirrel.Rime',
     'squirrel-rime-upstream': 'im.rime.inputmethod.Squirrel.Rime',
     'osx-pinyin': 'com.apple.inputmethod.SCIM.ITABC',
+    'osx-shuangpin': 'com.apple.inputmethod.SCIM.Shuangpin',
     'osx-wubi': 'com.apple.inputmethod.SCIM.WBX',
     'qingg': 'com.aodaren.inputmethod.Qingg',
     'loginput': 'com.logcg.inputmethod.LogInputMac.LogInputMacSP',
