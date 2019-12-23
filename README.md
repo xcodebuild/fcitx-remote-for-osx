@@ -1,9 +1,9 @@
-fcitx-remote OS X
+fcitx-remote for OS X
 =================
 
 ## fcitx-remote
 
-fcitx-remote is a tool for control fcitx state via console. Users in
+`fcitx-remote` is a tool to control fcitx state via console. Users in
 Linux use it for interaction with their vim or emacs to avoid being
 interrupted by input method.
 
@@ -25,16 +25,47 @@ interrupted by input method.
 ## How this works
 
 fcitx-remote for OS X dosen't rely on fcitx at all. It is just a small
-program which responds to fcitx.el etc. just like it's really a fcitx-remote in
+program that responds to fcitx.el etc. just like it's really a fcitx-remote in
 GNU/Linux.
 
 You can choose your Chinese input method and English layout(or others)
 in compilation.
 
-## Install
+## Settings
+
+There are two modes:
+
+1. GENERAL mode: use keystroke Ctrl-Shift-Z to switch input method, see instructions below.
+2. SPECIFIC mode: switch to specific input method by name. Builtin support is included for:
+    1. Baidu Pinyin
+    2. Baidu Wubi
+    3. Log Input
+    4. Log Input 2
+    5. OS X Pinyin
+    6. OS X Shuangpin
+    7. OS X Wubi
+    8. Qingg
+    9. QQ Wubi
+    10. Sogou Pinyin
+    11. Squirrel Rime(old verison)
+    12. Squirrel Rime
+
+## Installation
 
 ```bash
-brew install fcitx-remote-for-osx --with-input-method=<method>
+git clone https://github.com/xcodebuild/fcitx-remote-for-osx.git
+cd fcitx-remote-for-osx
+./build.py build all
+# general method
+cp ./fcitx-remote-general /usr/local/bin/fcitx-remote
+# squirrel for example
+cp ./fcitx-remote-squirrel-rime-upstream /usr/local/bin/fcitx-remote
+```
+
+## Installation via homebrew (obsolete)
+
+```bash
+brew install fcitx-remote-for-osx
 ```
 
 ## System Settings for methods other than general
