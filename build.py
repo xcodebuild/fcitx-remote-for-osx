@@ -72,7 +72,7 @@ def print_help():
         textwrap.dedent('''\
         Example usage:
           ./build.py clean
-          ./build.py build all
+          ./build.py build all [EN_Keylayout (abc|us)]
           ./build.py build <InputMethod> [EN_Keylayout (abc|us)]
           '''))
     ims = '\n\t'.join(x for x in InputMethod)
