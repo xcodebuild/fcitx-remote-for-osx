@@ -55,7 +55,10 @@ There are two modes:
 ```bash
 git clone https://github.com/xcodebuild/fcitx-remote-for-osx.git
 cd fcitx-remote-for-osx
-./build.py build all
+# use US (美式英语)
+./build.py build all us
+# or use ABC
+#./build.py build all abc
 # general method
 cp ./fcitx-remote-general /usr/local/bin/fcitx-remote
 # squirrel for example
