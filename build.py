@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#
+#!/usr/bin/env python
 #  This file is part of fcitx-remote-for-osx
 #  Copyright (c) 2017 fcitx-remote-for-osx's authors
 #  This program is free software: you can redistribute it and/or modify
@@ -14,71 +13,85 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-
 import os
 import sys
+import textwrap
 
 CC = 'clang'
-BUILD_PATH = 'fcitx-remote-%s'
+BUILD_PATH = 'fcitx-remote-{}'
 SOURCE_FILE = './fcitx-remote/main.m'
-OPTS = '-framework foundation -framework carbon -DCHINESE_KEYBOARD_LAYOUT=@\\"%s\\" -o %s'
-
 
 InputMethod = {
     'baidu-pinyin': 'com.baidu.inputmethod.BaiduIM.pinyin',
     'baidu-wubi': 'com.baidu.inputmethod.BaiduIM.wubi',
-    'sogou-pinyin': 'com.sogou.inputmethod.sogou.pinyin',
-    'qq-wubi': 'com.tencent.inputmethod.QQInput.QQWubi',
-    'squirrel-rime': 'com.googlecode.rimeime.inputmethod.Squirrel.Rime',
-    'squirrel-rime-upstream': 'im.rime.inputmethod.Squirrel.Rime',
-    'osx-pinyin': 'com.apple.inputmethod.SCIM.ITABC',
-    'osx-shuangpin': 'com.apple.inputmethod.SCIM.Shuangpin',
-    'osx-wubi': 'com.apple.inputmethod.SCIM.WBX',
-    'qingg': 'com.aodaren.inputmethod.Qingg',
     'loginput': 'com.logcg.inputmethod.LogInputMac.LogInputMacSP',
     'loginput2': 'com.logcg.inputmethod.LogInputMac2.LogInputMac2SP',
+    'macos-pinyin': 'com.apple.inputmethod.SCIM.ITABC',
+    'macos-shuangpin': 'com.apple.inputmethod.SCIM.Shuangpin',
+    'macos-wubi': 'com.apple.inputmethod.SCIM.WBX',
+    'qingg': 'com.aodaren.inputmethod.Qingg',
+    'qq-wubi': 'com.tencent.inputmethod.QQInput.QQWubi',
+    'sogou-pinyin': 'com.sogou.inputmethod.sogou.pinyin',
+    'squirrel-rime': 'com.googlecode.rimeime.inputmethod.Squirrel.Rime',
+    'squirrel-rime-upstream': 'im.rime.inputmethod.Squirrel.Rime',
     'general': 'GENERAL'
 }
 
-def build(imname):
-    use_path = BUILD_PATH % imname
-    use_opts = OPTS % (InputMethod[imname], use_path)
-    use_cmd = '%s %s %s' % (CC, SOURCE_FILE, use_opts)
-    print use_cmd
-    if os.system(use_cmd) == 0:
-        return imname
-    else:
-        return False
+USkeylayout = {
+    'abc': 'com.apple.keylayout.ABC',
+    'us': 'com.apple.keylayout.US',
+}
 
-def build_all():
-    for imname in InputMethod.iterkeys():
-        if build(imname) == False:
-            sys.exit(1)
 
-def print_help():
-    print './build.py build all\n./build.py clean'
-    print './build.py build [im]'
-    print 'im:'
-    for im in InputMethod.iterkeys():
-        print '\t %s' % im
+def build(imname, uskeylayout):
+    out_path = BUILD_PATH.format(imname)
+    opts = ('-framework foundation -framework carbon '
+            f'-D CHINESE_KEYBOARD_LAYOUT=@\\"{InputMethod[imname]}\\" '
+            f'-D US_KEYBOARD_LAYOUT=@\\"{USkeylayout[uskeylayout]}\\" '
+            f'-o {out_path}')
+    use_cmd = f'{CC} {SOURCE_FILE} {opts}'
+    print(use_cmd)
+
+    if os.system(use_cmd):
+        raise RuntimeError
+
+
+def build_all(uskeylayout):
+    for imname in InputMethod:
+        build(imname, uskeylayout)
+
 
 def clean():
-    for imname in InputMethod.iterkeys():
-        use_path = BUILD_PATH % imname
-        os.system('rm %s' % use_path)
+    for imname in InputMethod:
+        use_path = BUILD_PATH.format(imname)
+        os.system(f'rm {use_path}')
+
+
+def print_help():
+    print(
+        textwrap.dedent('''\
+        Example usage:
+          ./build.py clean
+          ./build.py build all
+          ./build.py build <InputMethod> [EN_Keylayout (abc|us)]
+          '''))
+    ims = '\n\t'.join(x for x in InputMethod)
+    print(f"InputMethod:\n\t{ims}")
+
+
+def main(action=None, inputmethod=None, us_keylayout='abc', *args):
+    if action == 'clean':
+        clean()
+    elif action == 'build' \
+        and (inputmethod in InputMethod or inputmethod == 'all') \
+        and us_keylayout in USkeylayout:
+        if inputmethod == 'all':
+            build_all(us_keylayout)
+        else:
+            build(inputmethod, us_keylayout)
+    else:
+        print_help()
+
 
 if __name__ == '__main__':
-    if(len(sys.argv) < 2):
-        print_help()
-    else:
-        if sys.argv[1] == 'build':
-            if sys.argv[2] == 'all':
-                build_all()
-            else:
-                build(sys.argv[2])
-        elif sys.argv[1] == 'clean':
-            clean()
-        else:
-            print_help()
-    sys.exit(0)
+    main(*sys.argv[1:])
