@@ -34,12 +34,14 @@ InputMethod = {
     'sogou-pinyin': 'com.sogou.inputmethod.sogou.pinyin',
     'squirrel-rime': 'com.googlecode.rimeime.inputmethod.Squirrel.Rime',
     'squirrel-rime-upstream': 'im.rime.inputmethod.Squirrel.Rime',
+    'russian-win': 'com.apple.keylayout.RussianWin',
     'general': 'GENERAL'
 }
 
 USkeylayout = {
     'abc': 'com.apple.keylayout.ABC',
     'us': 'com.apple.keylayout.US',
+    'colemak': 'com.apple.keylayout.Colemak'
 }
 
 
