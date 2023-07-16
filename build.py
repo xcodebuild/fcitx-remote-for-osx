@@ -34,6 +34,8 @@ InputMethod = {
     'sogou-pinyin': 'com.sogou.inputmethod.sogou.pinyin',
     'squirrel-rime': 'com.googlecode.rimeime.inputmethod.Squirrel.Rime',
     'squirrel-rime-upstream': 'im.rime.inputmethod.Squirrel.Rime',
+    'squirrel-rime-hans': 'im.rime.inputmethod.Squirrel.Hans',
+    'squirrel-rime-hant': 'im.rime.inputmethod.Squirrel.Hant',
     'russian-win': 'com.apple.keylayout.RussianWin',
     'general': 'GENERAL'
 }

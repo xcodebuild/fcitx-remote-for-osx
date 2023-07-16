@@ -35,7 +35,7 @@ in compilation.
 
 There are two modes:
 
-1. GENERAL mode: use keystroke Ctrl-Shift-Z to switch input method, see instructions below.
+1. GENERAL mode: use keystroke `Ctrl-Shift-Z` to switch input method, see instructions below.
 2. SPECIFIC mode: switch to specific input method by name. Builtin support is included for:
     1. Baidu Pinyin
     2. Baidu Wubi
@@ -48,7 +48,9 @@ There are two modes:
     9. QQ Wubi
     10. Sogou Pinyin
     11. Squirrel Rime(old verison)
-    12. Squirrel Rime
+    12. Squirrel Rime(before 0.16.0)
+    13. Squirrel Rime(Hans, since 0.16.0)
+    14. Squirrel Rime(Hant, since 0.16.0)
 
 ## Installation
 
@@ -62,7 +64,7 @@ cd fcitx-remote-for-osx
 # general method
 cp ./fcitx-remote-general /usr/local/bin/fcitx-remote
 # squirrel for example
-cp ./fcitx-remote-squirrel-rime-upstream /usr/local/bin/fcitx-remote
+cp ./fcitx-remote-squirrel-rime-hans /usr/local/bin/fcitx-remote
 ```
 
 ## Installation via homebrew (obsolete)
@@ -77,7 +79,7 @@ None.
 
 ## System Settings for GENERAL method only
 
-Set your shortcut for `Select next source in input menu` to `Ctrl-Shift-z`.
+Set your shortcut for `Select next source in input menu` to `Ctrl-Shift-Z`.
 
 ![preview](https://cloud.githubusercontent.com/assets/5436704/15090907/60f3cc0a-146a-11e6-9f32-8128d1e2a339.png)
 
